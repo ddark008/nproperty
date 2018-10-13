@@ -1,0 +1,42 @@
+# JFork NProperty
+[![](https://jitpack.io/v/zcxv/nproperty.svg)](https://jitpack.io/#zcxv/nproperty)
+
+## License
+See LICENSE file.
+
+## Authors
+Nikita "Yurie" Sankov
+
+## Examples
+Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in-java-nproperty/) | [RU](http://microfork.com/reading-configuration-files-with-java-nproperty/)
+
+## Integration
+### Maven
+```
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
+	<dependency>
+	    <groupId>com.github.zcxv</groupId>
+	    <artifactId>nproperty</artifactId>
+	    <version>1.4</version>
+	</dependency>
+```
+
+### Gradle
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+	dependencies {
+	        implementation 'com.github.zcxv:nproperty:1.4'
+	}
+```
