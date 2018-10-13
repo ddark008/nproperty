@@ -23,7 +23,7 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 	<dependency>
 	    <groupId>com.github.zcxv</groupId>
 	    <artifactId>nproperty</artifactId>
-	    <version>1.4</version>
+	    <version>1.4.1</version>
 	</dependency>
 ```
 
@@ -36,6 +36,6 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 	}
 	
 	dependencies {
-	        implementation 'com.github.zcxv:nproperty:1.4'
+	        implementation 'com.github.zcxv:nproperty:1.4.1'
 	}
 ```

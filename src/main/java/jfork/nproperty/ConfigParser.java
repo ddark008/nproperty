@@ -21,14 +21,28 @@
 
 package jfork.nproperty;
 
-import jfork.typecaster.TypeCaster;
-import jfork.typecaster.exception.IllegalTypeException;
-
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import jfork.typecaster.TypeCaster;
+import jfork.typecaster.exception.IllegalTypeException;
 
 /**
  * Configuration parser parses given configuration file(s) and fills given object fields.
@@ -248,7 +262,7 @@ public class ConfigParser
 
 			if (field.isAnnotationPresent(Cfg.class))
 			{
-				if (field.getAnnotation(Cfg.class).ignore())
+				if (field.getAnnotation(Cfg.class).ignore() || field.isAnnotationPresent(CfgIgnore.class))
 					continue;
 
 				name = field.getAnnotation(Cfg.class).value();
@@ -620,7 +634,7 @@ public class ConfigParser
 
 			if (field.isAnnotationPresent(Cfg.class))
 			{
-				if (field.getAnnotation(Cfg.class).ignore())
+				if (field.getAnnotation(Cfg.class).ignore() || field.isAnnotationPresent(CfgIgnore.class))
 					continue;
 
 				name = field.getAnnotation(Cfg.class).value();
