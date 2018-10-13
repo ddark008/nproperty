@@ -31,7 +31,6 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 ```Groovy
 	allprojects {
 		repositories {
-			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
