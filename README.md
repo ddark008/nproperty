@@ -12,7 +12,7 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 
 ## Integration
 ### Maven
-```
+```Java
 	<repositories>
 		<repository>
 		    <id>jitpack.io</id>
@@ -28,7 +28,7 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 ```
 
 ### Gradle
-```
+```Java
 	allprojects {
 		repositories {
 			...
