@@ -28,12 +28,24 @@ import java.util.Map;
  */
 public class ConfigStoreFormatterIni extends ConfigStoreFormatterImpl
 {
+	private String comments;
 	@Override
 	public String generate()
 	{
 		String lineSeparator = System.getProperty("line.separator");
 		boolean isFirstField = true;
 		StringBuilder builder = new StringBuilder();
+
+		if (comments != null){
+			String[] commentStrings = comments.split("\\r?\\n", -1);
+			for (String comment: commentStrings) {
+				if (!comment.startsWith("#")){
+					builder.append("# ");
+				}
+				builder.append(comment);
+				builder.append(lineSeparator);
+			}
+		}
 
 		for (Map.Entry<String, String> pair : pairs.entrySet())
 		{
@@ -47,4 +59,8 @@ public class ConfigStoreFormatterIni extends ConfigStoreFormatterImpl
 
 		return builder.toString();
 	}
+	public ConfigStoreFormatterIni(String comments){
+		this.comments = comments;
+	}
+	public ConfigStoreFormatterIni(){}
 }

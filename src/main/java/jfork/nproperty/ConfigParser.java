@@ -515,6 +515,23 @@ public class ConfigParser
 	}
 
 	/**
+	 * Stores configuration fields to given file.
+	 *
+	 * @param object Object to get fields from.
+	 * @param file File descriptor to write to.
+	 * @param comments A description of the property list.
+	 * @throws IOException If any I/O error occurs.
+	 * @throws IllegalAccessException When failed to access objects' data.
+	 */
+	public static void store(Object object, File file, String comments) throws IOException, IllegalAccessException
+	{
+		try (OutputStream stream = new FileOutputStream(file))
+		{
+			store(object, stream, comments);
+		}
+	}
+
+	/**
 	 * Stores configuration fields in XML format to given file.
 	 * Author - PointerRage.
 	 *
@@ -542,6 +559,22 @@ public class ConfigParser
 	public static void store(Object object, OutputStream stream) throws IOException, IllegalAccessException
 	{
 		ConfigStoreFormatterIni formatter = new ConfigStoreFormatterIni();
+		store0(object, formatter);
+		stream.write(formatter.generate().getBytes());
+	}
+
+	/**
+	 * Stores configuration fields to stream.
+	 *
+	 * @param object Object to get fields from.
+	 * @param stream Output stream to write to.
+	 * @param comments A description of the property list.
+	 * @throws IOException If any I/O error occurs.
+	 * @throws IllegalAccessException When failed to access objects' data.
+	 */
+	public static void store(Object object, OutputStream stream, String comments) throws IOException, IllegalAccessException
+	{
+		ConfigStoreFormatterIni formatter = new ConfigStoreFormatterIni(comments);
 		store0(object, formatter);
 		stream.write(formatter.generate().getBytes());
 	}
