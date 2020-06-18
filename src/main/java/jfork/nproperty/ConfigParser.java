@@ -21,14 +21,7 @@
 
 package jfork.nproperty;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -36,6 +29,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -114,7 +108,7 @@ public class ConfigParser
 	{
 		Properties props;
 
-		try (FileInputStream stream = new FileInputStream(file))
+		try (InputStreamReader stream = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))
 		{
 			props = parse(object, stream, file.getPath());
 		}
@@ -508,7 +502,7 @@ public class ConfigParser
 	 */
 	public static void store(Object object, File file) throws IOException, IllegalAccessException
 	{
-		try (OutputStream stream = new FileOutputStream(file))
+		try (OutputStreamWriter stream = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))
 		{
 			store(object, stream);
 		}
@@ -525,7 +519,7 @@ public class ConfigParser
 	 */
 	public static void store(Object object, File file, String comments) throws IOException, IllegalAccessException
 	{
-		try (OutputStream stream = new FileOutputStream(file))
+		try (OutputStreamWriter stream = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))
 		{
 			store(object, stream, comments);
 		}
@@ -556,11 +550,11 @@ public class ConfigParser
 	 * @throws IOException If any I/O error occurs.
 	 * @throws IllegalAccessException When failed to access objects' data.
 	 */
-	public static void store(Object object, OutputStream stream) throws IOException, IllegalAccessException
+	public static void store(Object object, OutputStreamWriter stream) throws IOException, IllegalAccessException
 	{
 		ConfigStoreFormatterIni formatter = new ConfigStoreFormatterIni();
 		store0(object, formatter);
-		stream.write(formatter.generate().getBytes());
+		stream.write(formatter.generate());
 	}
 
 	/**
@@ -572,11 +566,11 @@ public class ConfigParser
 	 * @throws IOException If any I/O error occurs.
 	 * @throws IllegalAccessException When failed to access objects' data.
 	 */
-	public static void store(Object object, OutputStream stream, String comments) throws IOException, IllegalAccessException
+	public static void store(Object object, OutputStreamWriter stream, String comments) throws IOException, IllegalAccessException
 	{
 		ConfigStoreFormatterIni formatter = new ConfigStoreFormatterIni(comments);
 		store0(object, formatter);
-		stream.write(formatter.generate().getBytes());
+		stream.write(formatter.generate());
 	}
 
 	/**

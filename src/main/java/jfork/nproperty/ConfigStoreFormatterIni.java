@@ -52,7 +52,7 @@ public class ConfigStoreFormatterIni extends ConfigStoreFormatterImpl
 			if (isFirstField)
 				isFirstField = false;
 			else
-				builder.append(lineSeparator).append(lineSeparator);
+				builder.append(lineSeparator);
 
 			builder.append(pair.getKey()).append(" = ").append(pair.getValue());
 		}
