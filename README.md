@@ -1,5 +1,5 @@
 # JFork NProperty
-[![](https://jitpack.io/v/zcxv/nproperty.svg)](https://jitpack.io/#zcxv/nproperty)
+[![](https://jitpack.io/v/ddark008/nproperty.svg)](https://jitpack.io/#ddark008/nproperty)
 
 ## License
 See LICENSE file.
@@ -21,9 +21,9 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 	</repositories>
 	
 	<dependency>
-	    <groupId>com.github.zcxv</groupId>
+	    <groupId>com.github.ddark008</groupId>
 	    <artifactId>nproperty</artifactId>
-	    <version>1.4.1</version>
+	    <version>1.4.2</version>
 	</dependency>
 ```
 
@@ -36,6 +36,6 @@ Most interesting parts: [EN](http://microfork.com/reading-configuration-files-in
 	}
 	
 	dependencies {
-	        implementation 'com.github.zcxv:nproperty:1.4.1'
+	        implementation 'com.github.ddark008:nproperty:1.4.2'
 	}
 ```
