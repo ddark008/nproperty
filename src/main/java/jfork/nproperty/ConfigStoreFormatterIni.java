@@ -21,7 +21,8 @@
 
 package jfork.nproperty;
 
-import java.util.Map;
+import java.io.IOException;
+import java.io.StringWriter;
 
 /**
  * Store generator for ini-files format.
@@ -33,7 +34,6 @@ public class ConfigStoreFormatterIni extends ConfigStoreFormatterImpl
 	public String generate()
 	{
 		String lineSeparator = System.getProperty("line.separator");
-		boolean isFirstField = true;
 		StringBuilder builder = new StringBuilder();
 
 		if (comments != null){
@@ -46,16 +46,14 @@ public class ConfigStoreFormatterIni extends ConfigStoreFormatterImpl
 				builder.append(lineSeparator);
 			}
 		}
-
-		for (Map.Entry<String, String> pair : pairs.entrySet())
-		{
-			if (isFirstField)
-				isFirstField = false;
-			else
-				builder.append(lineSeparator);
-
-			builder.append(pair.getKey()).append(" = ").append(pair.getValue());
+		StringWriter sw = new StringWriter();
+		try {
+			pairs.store(sw, null);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		builder.append(lineSeparator);
+		builder.append(sw);
 
 		return builder.toString();
 	}

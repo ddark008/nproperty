@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.zcxv</groupId>
+    <groupId>com.github.ddark008</groupId>
     <artifactId>nproperty</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -16,7 +16,13 @@
     </properties>
 
     <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub ddark008 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ddark008</url>
+        </repository>
     </distributionManagement>
+
 
     <build>
         <plugins>

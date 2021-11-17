@@ -66,11 +66,12 @@ public class ConfigStoreFormatterXml extends ConfigStoreFormatterImpl
 
 		Element properties = (Element)doc.appendChild(doc.createElement("properties"));
 
-		for (Map.Entry<String, String> pair : pairs.entrySet())
+
+		for (Map.Entry<Object, Object> pair : pairs.entrySet())
 		{
 			Element entry = (Element)properties.appendChild(doc.createElement("entry"));
-			entry.setAttribute("key", pair.getKey());
-			entry.appendChild(doc.createTextNode(pair.getValue()));
+			entry.setAttribute("key", (String) pair.getKey());
+			entry.appendChild(doc.createTextNode( (String) pair.getValue()));
 		}
 
 		TransformerFactory tf = TransformerFactory.newInstance();

@@ -21,8 +21,7 @@
 
 package jfork.nproperty;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Properties;
 
 /**
  * Formatter base with using LinkedHashMap to store property pairs.
@@ -31,12 +30,11 @@ import java.util.Map;
  */
 public abstract class ConfigStoreFormatterImpl implements IConfigStoreFormatter
 {
-	protected Map<String, String> pairs = new LinkedHashMap<>();
+	protected Properties pairs = new Properties();
 
 	@Override
 	public void addPair(String key, String value)
 	{
-		if (!pairs.containsKey(key))
-			pairs.put(key, value);
+		pairs.setProperty(key, value);
 	}
 }
